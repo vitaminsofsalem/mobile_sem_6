@@ -1,16 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+const { height, width } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "flex-start",
     justifyContent: "flex-start",
   },
   image: {
-    width: 130,
-    height: 130,
+    width: 200,
+    height: 200,
+    bottom: 15,
     resizeMode: "contain",
+  },
+  imageBGR: {
+    height: height,
+    width: width,
   },
 });
 
