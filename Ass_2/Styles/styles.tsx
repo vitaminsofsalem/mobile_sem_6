@@ -6,12 +6,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    backgroundColor: "pink",
   },
   image: {
     width: 220,
     height: 220,
-    bottom: 73,
+    bottom: 72,
+    right: 10,
     resizeMode: "contain",
   },
   imageBGR: {

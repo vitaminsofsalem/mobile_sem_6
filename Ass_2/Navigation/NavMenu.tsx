@@ -1,12 +1,14 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import About from "../Screens/About";
 import Home from "../Screens/Home";
+import CustomNavMenu from "../Components/CustomNavMenu";
 
 const Drawer = createDrawerNavigator();
 function NavMenu() {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
+      drawerContent={(props) => <CustomNavMenu {...props} />}
       screenOptions={{
         headerShown: false,
         drawerType: "slide",
