@@ -6,16 +6,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     justifyContent: "flex-start",
+    backgroundColor: "pink",
   },
   image: {
-    width: 200,
-    height: 200,
-    bottom: 15,
+    width: 220,
+    height: 220,
+    bottom: 73,
     resizeMode: "contain",
   },
   imageBGR: {
     height: height,
     width: width,
+  },
+  header: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    width: "100%",
+    padding: 10,
   },
 });
 

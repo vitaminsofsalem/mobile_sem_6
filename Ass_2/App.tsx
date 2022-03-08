@@ -1,36 +1,23 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageBackground,
-  Dimensions,
-} from "react-native";
-import { useEffect } from "react";
+import { View, Image, ImageBackground } from "react-native";
+import { useEffect, useState } from "react";
 import styles from "./Styles/styles";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import NavMenu from "./Navigation/NavMenu";
 
-const { height, width } = Dimensions.get("screen");
-console.log(width, height);
-// useEffect(() => {
-//   fetch(`https://picsum.photos/${width}/${height}`)
-// },[])
-
-const image = {
-  uri: `https://picsum.photos/1920/1080`,
-};
 export default function App() {
+  const [img, setImg] = useState<any | null>(null);
+
+  useEffect(() => {
+    setImg(`https://picsum.photos/1920/1080`);
+  }, []);
+
   return (
     <>
-      <View style={styles.container}>
-        <ImageBackground source={image} style={styles.imageBGR}>
-          <Image
-            style={styles.image}
-            source={require("./assets/chromeLogo_white_vertical.png")}
-            resizeMode="cover"
-          />
-        </ImageBackground>
-      </View>
+      <NavigationContainer>
+        <NavMenu />
+      </NavigationContainer>
     </>
   );
 }
