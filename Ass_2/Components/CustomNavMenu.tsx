@@ -1,6 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+  Image,
+} from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -17,10 +23,31 @@ export default function CustomNavMenu(
           {...props}
           contentContainerStyle={styles.header}
         >
-          <TouchableOpacity onPress={() => navigation.closeDrawer()}>
-            <Ionicons name="menu" size={40} color="whitesmoke" />
-          </TouchableOpacity>
-          <DrawerItemList {...props} />
+          <View
+            style={{
+              padding: 20,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              source={require("../assets/profile_pic.jpg")}
+              style={styles.img}
+            />
+            <Text
+              style={{
+                marginTop: 5,
+                fontSize: 17,
+                fontWeight: "normal",
+              }}
+            >
+              AmrShawki
+            </Text>
+          </View>
+          <View style={{ flex: 1, paddingTop: 10 }}>
+            <DrawerItemList {...props} />
+          </View>
         </DrawerContentScrollView>
       </View>
     </>
@@ -31,7 +58,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  header: {
-    backgroundColor: "pink",
+  header: {},
+  img: {
+    height: 125,
+    width: 125,
+    borderRadius: 4000000,
   },
 });
