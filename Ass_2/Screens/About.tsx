@@ -25,7 +25,7 @@ export default function About({ navigation }: { navigation: any }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "pink",
+    backgroundColor: "#472f17",
     alignItems: "center",
     justifyContent: "center",
     height: "100%",

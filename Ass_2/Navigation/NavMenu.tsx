@@ -2,6 +2,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import About from "../Screens/About";
 import Home from "../Screens/Home";
 import CustomNavMenu from "../Components/CustomNavMenu";
+import SearchBar from "../Components/SearchBar";
 import { Ionicons } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
