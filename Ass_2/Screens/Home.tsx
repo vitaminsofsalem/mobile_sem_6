@@ -1,30 +1,18 @@
 import {
   View,
   Image,
+  Text,
   ImageBackground,
   Dimensions,
   StyleSheet,
 } from "react-native";
 import { useEffect, useState } from "react";
-// import styles from "../Styles/styles";
-import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import SearchBar from "../Components/SearchBar";
 
 const { height, width } = Dimensions.get("screen");
-
-const StyledView = styled.View`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
-
-const StyledText = styled.Text`
-  color: palevioletred;
-`;
 
 export default function Index({ navigation }: { navigation: any }) {
   const [img, setImg] = useState<any | null>(null);
@@ -53,6 +41,12 @@ export default function Index({ navigation }: { navigation: any }) {
             </View>
             <View style={{ top: "20%" }}>
               <SearchBar />
+              <Text style={styles.caption}>
+                The World's Most Open-Source Search Engine
+              </Text>
+              <Text style={styles.smallPrint}>
+                Only When It Comes To Your Data Though...
+              </Text>
             </View>
           </ImageBackground>
         </View>
@@ -83,5 +77,18 @@ const styles = StyleSheet.create({
     height: "10%",
     width: "100%",
     padding: 10,
+  },
+  caption: {
+    textAlign: "center",
+    marginTop: "10%",
+    fontWeight: "bold",
+    color: "whitesmoke",
+    fontSize: 24,
+  },
+  smallPrint: {
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "whitesmoke",
+    fontSize: 14,
   },
 });
