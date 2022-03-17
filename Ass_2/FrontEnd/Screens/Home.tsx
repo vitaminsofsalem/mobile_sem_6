@@ -11,6 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import SearchBar from "../Components/SearchBar";
+import Overlay from "../Components/Overlay";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -29,6 +30,7 @@ export default function Index({ navigation }: { navigation: any }) {
             source={{ uri: img + "?" + new Date() }} // to force re-render
             style={styles.imageBGR}
           >
+            <Overlay />
             <View style={styles.header}>
               <Image
                 style={styles.image}

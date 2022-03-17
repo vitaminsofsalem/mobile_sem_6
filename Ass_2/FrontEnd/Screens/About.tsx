@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
+    color: "whitesmoke",
   },
 
   btn: {
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     textAlign: "center",
     width: 200,
+    color: "whitesmoke",
     fontSize: 17,
     marginBottom: 90,
   },
