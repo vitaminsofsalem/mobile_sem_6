@@ -6,50 +6,14 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from "react-native-reanimated";
 import React, { useRef, useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import styled from "styled-components/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 
-const StyledView = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
-
-const StyledContainer = styled.View`
-  position: relative;
-  width: 80%;
-  height: 50px;
-  border-radius: 15px;
-  border: 1px solid lightgray;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const StyledTextInput = styled.TextInput`
-  position: absolute;
-  padding: 12px;
-  width: 80%;
-  height: 100%;
-  line-height: 30px;
-  border: 0;
-  font-size: 20px;
-  border-radius: 15px;
-  margin: 0;
-  background: white;
-`;
 export default function SearchBar() {
-  const [isPressed, setPressed] = useState(false);
+  const navigation = useNavigation<any>();
+  const [term, setTerm] = useState("");
+
   return (
     <View style={styles.view}>
       <View style={[styles.container, styles.shadow]}>
@@ -57,6 +21,10 @@ export default function SearchBar() {
           style={styles.textInput}
           placeholder="Search..."
           selectionColor={"black"}
+          onChangeText={(e) => setTerm(e)}
+          onSubmitEditing={() => {
+            navigation.navigate("SearchResults", { term });
+          }}
         ></TextInput>
         <Ionicons
           style={{ alignSelf: "flex-end", marginRight: 10 }}

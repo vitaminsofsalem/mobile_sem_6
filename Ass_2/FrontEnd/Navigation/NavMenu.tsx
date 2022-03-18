@@ -4,7 +4,7 @@ import Home from "../Screens/Home";
 import CustomNavMenu from "../Components/CustomNavMenu";
 import SearchBar from "../Components/SearchBar";
 import { Ionicons } from "@expo/vector-icons";
-import Overlay from "../Components/Overlay";
+import SearchResults from "../Screens/SearchResults";
 
 const Drawer = createDrawerNavigator();
 function NavMenu() {
@@ -37,7 +37,7 @@ function NavMenu() {
       />
       <Drawer.Screen
         name="About"
-        component={Overlay}
+        component={About}
         options={{
           drawerIcon: ({ color }) => (
             <Ionicons name="help-outline" size={22} color={color} />
@@ -45,12 +45,13 @@ function NavMenu() {
         }}
       />
       <Drawer.Screen
-        name="Overlay"
-        component={Overlay}
+        name="SearchResults"
+        component={SearchResults}
         options={{
           drawerIcon: ({ color }) => (
             <Ionicons name="help-outline" size={22} color={color} />
           ),
+          drawerItemStyle: { display: "none" }, // Hide the search results screen from the nav menu
         }}
       />
     </Drawer.Navigator>
