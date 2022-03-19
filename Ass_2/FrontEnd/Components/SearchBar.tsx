@@ -5,10 +5,12 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
+  Button,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function SearchBar() {
   const navigation = useNavigation<any>();

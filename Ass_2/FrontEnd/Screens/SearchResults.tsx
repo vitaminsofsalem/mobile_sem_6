@@ -2,26 +2,24 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import * as axios from "axios";
 import {
-  View,
   Button,
   Dimensions,
   SafeAreaView,
   StyleSheet,
   Text,
+  StatusBar,
 } from "react-native";
 import {
-  useIsFocused,
-  useNavigation,
+  NavigationContainer,
   useRoute,
+  useNavigation,
 } from "@react-navigation/native";
 import MapView, { Marker } from "react-native-maps";
-import Constants from "expo-constants";
 
-const SearchResults = ({ route }: { route: any }) => {
+const SearchResults = () => {
+  const route = useRoute<RouteProps>();
+  const navigation = useNavigation<any>();
   const { term } = route.params;
-  const isFocused = useIsFocused(); // re render only when focused
-  const navigation = useNavigation();
-  // console.log(isFocused);
 
   const [country, setCountry] = useState<GeocodeResult>();
   const [universities, setUniversity] = useState<University[]>();
@@ -45,53 +43,47 @@ const SearchResults = ({ route }: { route: any }) => {
       if (locationResults) setCountry(locationResults);
       if (universitiesResults) setUniversity(universitiesResults);
     });
-  }, [term]);
+  }, []);
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        paddingTop: Constants.statusBarHeight,
+        paddingTop: StatusBar.currentHeight,
       }}
     >
-      <View style={{ flex: 1 }}>
-        <Button
-          onPress={() => console.log("List Universities Button")}
-          title="List Universities"
-          color="#841584"
-        />
+      <Button
+        onPress={() => navigation.navigate("UniList", { universities })}
+        title="List Universities"
+        color="#2FA4FF"
+      />
 
-        {navigation.isFocused()
-          ? country &&
-            latitudeDelta &&
-            longitudeDelta && (
-              <MapView
-                style={styles.map}
-                zoomControlEnabled={true}
-                provider="google"
-                onRegionChange={(region) => setViewport({ region })}
-                initialRegion={{
-                  latitude: country.geometry.location.latitude,
-                  longitude: country.geometry.location.longitude,
-                  latitudeDelta: 10, // delta between origin bounds and client viewport
-                  longitudeDelta: 10, // delta between origin bounds and client viewport
-                }}
-              >
-                {universities?.map((marker: University, index: number) => (
-                  <Marker
-                    key={index}
-                    coordinate={{
-                      latitude: marker.lat,
-                      longitude: marker.lng,
-                    }}
-                    title={Marker.name}
-                    description={Marker.name}
-                  ></Marker>
-                ))}
-              </MapView>
-            )
-          : null}
-      </View>
+      {country && term && latitudeDelta && longitudeDelta && (
+        <MapView
+          style={styles.map}
+          zoomControlEnabled={true}
+          provider="google"
+          onRegionChange={(region) => setViewport({ region })}
+          initialRegion={{
+            latitude: country.geometry.location.latitude,
+            longitude: country.geometry.location.longitude,
+            latitudeDelta: 20, // delta between origin bounds and client viewport
+            longitudeDelta: 20, // delta between origin bounds and client viewport
+          }}
+        >
+          {universities?.map((marker: University, index: number) => (
+            <Marker
+              key={index}
+              coordinate={{
+                latitude: marker.lat,
+                longitude: marker.lng,
+              }}
+              title={Marker.name}
+              description={Marker.name}
+            ></Marker>
+          ))}
+        </MapView>
+      )}
     </SafeAreaView>
   );
 };
@@ -100,6 +92,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
   map: {
     width: Dimensions.get("window").width,
