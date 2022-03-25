@@ -17,7 +17,7 @@ export default function UniList() {
   const route = useRoute<any>();
   const { universities } = route.params;
 
-  console.log(universities);
+  // console.log(universities);
   return (
     <>
       <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
@@ -28,7 +28,7 @@ export default function UniList() {
               <>
                 <View style={styles.flatContainer}>
                   <Card
-                    img={item.image}
+                    img={item.image} // passing in array of images as props
                     address={item.addressFmt}
                     name={item.name}
                     slug={item.slug}

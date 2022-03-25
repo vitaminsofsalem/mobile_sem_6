@@ -1,21 +1,37 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import React from "react";
+import Carousel, { Pagination } from "react-native-snap-carousel";
+import React, { useState } from "react";
 
 export default function Card(props: any) {
-  console.log(props.img);
-  return (
-    <View style={[styles.card, styles.shadow]}>
+  const [entries, setActiveSlide] = useState<any>();
+
+  const _renderItem = ({ item, index }: any) => {
+    return (
       <Image
         style={{
-          width: "100%",
-          height: "65%",
+          flex: 1,
           borderTopRightRadius: 20,
           borderTopLeftRadius: 20,
         }}
         source={{
-          uri: props.img,
+          uri: item,
         }}
         resizeMode="cover"
+      />
+    );
+  };
+
+  return (
+    <View style={[styles.card, styles.shadow]}>
+      <Carousel
+        data={props.img}
+        layout="default"
+        renderItem={_renderItem}
+        removeClippedSubviews={false}
+        // containerCustomStyle={{ flex: 1 }}
+        sliderWidth={345} // static value => bad code
+        itemWidth={345} // static value => bad code
+        onSnapToItem={(index) => setActiveSlide(index)}
       />
       <View style={styles.fonts}>
         <View style={{ flexDirection: "row" }}>
@@ -61,5 +77,11 @@ const styles = StyleSheet.create({
   },
   fonts: {
     padding: 15,
+  },
+  img: {
+    width: "100%",
+    height: "95%",
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
 });
